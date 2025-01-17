@@ -1,20 +1,23 @@
 "use client";
 
-import { Fragment, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Label } from "@/components/ui/label";
 import { navItems } from "@/const";
-import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 
 export const Sidebar = () => {
   const [selected, setSelected] = useState("property-details");
   const router = useRouter();
+  const pathname = usePathname();
 
   const handleNavigation = (value: string) => {
     setSelected(value);
     router.push(`/${value}`);
   };
+  useEffect(() => {
+    setSelected(pathname.slice(1));
+  }, [pathname]);
 
   return (
     <aside className="h-svh border-r p-8">

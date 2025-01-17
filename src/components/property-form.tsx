@@ -49,7 +49,7 @@ export const PropertyForm = () => {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-2xl font-bold">Property details</h1>
+        <h1 className="pb-4 text-2xl font-bold">Property details</h1>
         <h2 className="text-lg text-muted-foreground">Property Detail</h2>
       </div>
 
@@ -95,8 +95,9 @@ export const PropertyForm = () => {
                   <FormLabel>Country</FormLabel>
                   <Select
                     onValueChange={field.onChange}
-                    defaultValue={state?.data?.country ?? field.value}
+                    defaultValue={state?.data?.country || field.value}
                     name="country"
+                    value={"uk"}
                   >
                     <FormControl>
                       <SelectTrigger>
@@ -122,8 +123,9 @@ export const PropertyForm = () => {
                   <FormLabel>City</FormLabel>
                   <Select
                     onValueChange={field.onChange}
-                    defaultValue={state?.data?.city ?? field.value}
+                    defaultValue={state?.data?.city || field.value}
                     name="city"
+                    value={"london"}
                   >
                     <FormControl>
                       <SelectTrigger>

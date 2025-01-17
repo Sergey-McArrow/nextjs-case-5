@@ -14,9 +14,9 @@ export const navItems = [
 export const defaultPropertyFormData = {
   propertyName: "Storage A",
   addressLine: "3549 102nd Avenue Cranbrook, BC V1C 2R9",
-  country: "Canada",
-  city: "Cranbrook",
-  zipCode: "V1C 2R9",
+  country: "United Kingdom",
+  city: "London",
+  zipCode: "W1C 2R9",
   closeDate: new Date().toISOString(),
 } as const;
 
@@ -32,3 +32,22 @@ export const rentRollData = Array.from({ length: 50 }, (_, index) => ({
 }));
 
 export const ITEMS_PER_PAGE = 10;
+
+export const IncomeExpensesCurrentFormDefaultValues = {
+  netRental: 1128,
+  retailIncome: 300,
+  insuranceIncome: 300,
+  miscAdditionalIncome: 1128,
+};
+
+export const incomeExpenssesAnnualFormDefaultValues = {
+  propertyTaxes: 40453,
+  insurance: 17359,
+  utilities: 12140,
+  repairsAndMaintenance: 6953,
+  adminExpense: 54001,
+  offSiteManagement: 24000,
+  onSiteManagement: 11358,
+  advertisingMarketing: 11067,
+  miscellaneous: 13500,
+};

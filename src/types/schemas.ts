@@ -26,3 +26,22 @@ export const propertyFormSchema = z.object({
     required_error: "Close date is required",
   }),
 });
+
+export const incomeExpensesCurrentFormSchema = z.object({
+  netRental: z.number(),
+  retailIncome: z.number(),
+  insuranceIncome: z.number(),
+  miscAdditionalIncome: z.number(),
+});
+
+export const incomeExpenssesAnnualFormSchema = z.object({
+  propertyTaxes: z.number(),
+  insurance: z.number(),
+  utilities: z.number(),
+  repairsAndMaintenance: z.number(),
+  adminExpense: z.number(),
+  offSiteManagement: z.number(),
+  onSiteManagement: z.number(),
+  advertisingMarketing: z.number(),
+  miscellaneous: z.number(),
+});

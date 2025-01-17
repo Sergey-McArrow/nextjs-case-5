@@ -19,5 +19,29 @@ model Property {
   zipCode      String
   closeDate    String
 
+  // Financial Data
+  totalSquareFootage   Float  @default(1000)
+  netRental            Float?
+  retailIncome         Float?
+  insuranceIncome      Float?
+  miscIncome           Float?
+  effectiveGrossIncome Float?
+
+  propertyTaxes      Float?
+  insurance          Float?
+  utilities          Float?
+  repairsMaintenance Float?
+  miscExpenses       Float?
+  totalExpenses      Float?
+
+  netOperatingIncome       Float?
+  assetValue               Float?
+  totalDebt                Float?
+  loanToValue              Float?
+  annualDebtService        Float?
+  debtServiceCoverageRatio Float?
+  rentPerSqft              Float?
+  expenseRatio             Float?
+
   @@map("properties")
 }

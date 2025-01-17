@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { propertyFormSchema } from "./schemas";
+import { propertyFormSchema, TFinancialDataSchema } from "./schemas";
 
 export type TFormState<T> = {
   success: boolean;
@@ -14,3 +14,5 @@ export type TFormState<T> = {
 export type TPropertyFormData = z.infer<typeof propertyFormSchema>;
 
 export type TPropertyFormState = TFormState<TPropertyFormData>;
+
+export type TFinancialFormState = TFormState<TFinancialDataSchema>;

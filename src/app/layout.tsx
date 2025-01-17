@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import Providers from "./providers";
-import { Sidebar } from "@/components/layout/sidebar";
 
 const inter = Inter({
   variable: "--font-geist-sans",
@@ -23,10 +22,7 @@ export default function RootLayout({
     <html lang="en" className={inter.variable}>
       <body className="antialiased">
         <Providers>
-          <div className="grid grid-cols-[30%_70%]">
-            <Sidebar />
-            <main>{children}</main>
-          </div>
+          <main>{children}</main>
         </Providers>
       </body>
     </html>

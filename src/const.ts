@@ -19,6 +19,7 @@ export const defaultPropertyFormData = {
   city: "London",
   zipCode: "W1C 2R9",
   closeDate: new Date().toISOString(),
+  totalSquareFootage: 100,
 } as const;
 
 export const rentRollData = Array.from({ length: 50 }, (_, index) => ({
@@ -39,6 +40,8 @@ export const IncomeExpensesCurrentFormDefaultValues = {
   retailIncome: 300,
   insuranceIncome: 300,
   miscAdditionalIncome: 1128,
+  effectiveGrossIncome: 0,
+  rentPerSqft: 0,
 };
 
 export const incomeExpenssesAnnualFormDefaultValues = {
@@ -49,6 +52,10 @@ export const incomeExpenssesAnnualFormDefaultValues = {
   adminExpense: 54001,
   offSiteManagement: 24000,
   onSiteManagement: 11358,
+  totalExpenses: 0,
+  netOperatingIncome: 0,
+  assetValue: 0,
+  expenseRatio: 0,
   advertisingMarketing: 11067,
   miscellaneous: 13500,
 };

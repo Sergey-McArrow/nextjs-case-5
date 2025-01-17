@@ -1,6 +1,6 @@
 "use client";
 
-import { useActionState } from "react";
+import { useActionState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
@@ -33,19 +33,24 @@ import { format } from "date-fns";
 import { createPropertyAction } from "@/actions/property";
 import { propertyFormSchema } from "@/types/schemas";
 import { defaultPropertyFormData } from "@/const";
+import { SubmitAndBackBtn } from "./shared/submit-and-back-btn";
+import { useRouter } from "next/navigation";
 
 type PropertyFormValues = z.infer<typeof propertyFormSchema>;
 
 export const PropertyForm = () => {
-  const [state, formAction, isPending] = useActionState(
-    createPropertyAction,
-    null,
-  );
+  const router = useRouter();
+  const [state, formAction] = useActionState(createPropertyAction, null);
   const form = useForm<PropertyFormValues>({
     resolver: zodResolver(propertyFormSchema),
     defaultValues: defaultPropertyFormData,
   });
 
+  useEffect(() => {
+    if (state?.data) {
+      router.push(`/rent-roll`);
+    }
+  }, [state, router]);
   return (
     <div className="space-y-6">
       <div>
@@ -207,11 +212,7 @@ export const PropertyForm = () => {
               {Object.values(state?.errors).join(", ")}
             </div>
           )}
-          <div className="flex justify-end">
-            <Button type="submit" disabled={isPending}>
-              {isPending ? "Creating..." : "Continue"}
-            </Button>
-          </div>
+          <SubmitAndBackBtn />
         </form>
       </Form>
     </div>

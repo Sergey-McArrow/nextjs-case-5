@@ -1,6 +1,6 @@
 import { OwnershipStructureForm } from "@/components/ownership-structure-form";
 
-export default function OwnershipStructurePage() {
+const OwnershipStructurePage = () => {
   return (
     <div className="container max-w-4xl p-6">
       <h1 className="mb-6 text-2xl font-semibold">
@@ -9,4 +9,5 @@ export default function OwnershipStructurePage() {
       <OwnershipStructureForm />
     </div>
   );
-}
+};
+export default OwnershipStructurePage;

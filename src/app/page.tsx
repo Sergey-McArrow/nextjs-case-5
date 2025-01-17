@@ -18,6 +18,10 @@ export default function Page() {
           <Link href="/property-details">
             <Button size="lg">Add New Property</Button>
           </Link>
+
+          <Link href="/portfolio">
+            <Button size="lg">View Portfolio</Button>
+          </Link>
         </div>
       </div>
     </div>

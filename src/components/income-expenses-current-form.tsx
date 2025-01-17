@@ -21,13 +21,19 @@ import { incomeExpensesCurrentFormSchema } from "@/types/schemas";
 
 type FormValues = z.infer<typeof incomeExpensesCurrentFormSchema>;
 
-export function IncomeExpensesCurrentForm() {
+export const IncomeExpensesCurrentForm = () => {
   const form = useForm<FormValues>({
     resolver: zodResolver(incomeExpensesCurrentFormSchema),
     defaultValues: IncomeExpensesCurrentFormDefaultValues,
   });
 
-  const { setEgi } = useIncomeExpenses();
+  const {
+    setEgi,
+    setNetRental,
+    setRetailIncome,
+    setInsuranceIncome,
+    setMiscIncome,
+  } = useIncomeExpenses();
   const formValues = form.watch();
   const totalIncome = useMemo(() => {
     return (
@@ -40,11 +46,23 @@ export function IncomeExpensesCurrentForm() {
 
   useEffect(() => {
     setEgi(totalIncome);
-  }, [totalIncome, setEgi]);
+    setNetRental(formValues.netRental);
+    setRetailIncome(formValues.retailIncome);
+    setInsuranceIncome(formValues.insuranceIncome);
+    setMiscIncome(formValues.miscAdditionalIncome);
+  }, [
+    formValues,
+    totalIncome,
+    setEgi,
+    setNetRental,
+    setRetailIncome,
+    setInsuranceIncome,
+    setMiscIncome,
+  ]); //FIXME: need better solution
 
   return (
     <Form {...form}>
-      <form className="space-y-6">
+      <div className="space-y-6">
         <Card>
           <CardHeader>
             <CardTitle>Annual Income</CardTitle>
@@ -176,7 +194,7 @@ export function IncomeExpensesCurrentForm() {
             </Card>
           </CardContent>
         </Card>
-      </form>
+      </div>
     </Form>
   );
-}
+};

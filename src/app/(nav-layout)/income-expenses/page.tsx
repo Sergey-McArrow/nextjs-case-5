@@ -2,14 +2,16 @@ import { IncomeExpensesCurrentForm } from "@/components/income-expenses-current-
 import { IncomeExpenssesAnnualForm } from "@/components/income-expensses-annual-form";
 import { IncomeExpensesProvider } from "@/context/income-expenses-context";
 
-export default function IncomeExpensesPage() {
+export const IncomeExpensesPage = () => {
   return (
-    <IncomeExpensesProvider>
-      <div className="container mx-auto space-y-8 p-8">
-        <h1 className="text-2xl font-bold">Income & Expenses</h1>
+    <div className="container mx-auto space-y-8 p-8">
+      <h1 className="text-2xl font-bold">Income & Expenses</h1>
+      <IncomeExpensesProvider>
         <IncomeExpensesCurrentForm />
         <IncomeExpenssesAnnualForm />
-      </div>
-    </IncomeExpensesProvider>
+      </IncomeExpensesProvider>
+    </div>
   );
-}
+};
+
+export default IncomeExpensesPage;

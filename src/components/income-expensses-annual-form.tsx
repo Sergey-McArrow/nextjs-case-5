@@ -13,16 +13,29 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { useMemo } from "react";
+import { useEffect, useMemo } from "react";
 import { useIncomeExpenses } from "@/context/income-expenses-context";
 import { formatCurrency, onNonNumericValueChange } from "@/lib/helpers";
 import { incomeExpenssesAnnualFormSchema } from "@/types/schemas";
 import { incomeExpenssesAnnualFormDefaultValues } from "@/const";
+import { SubmitAndBackBtn } from "./shared/submit-and-back-btn";
+import { useActionState } from "react";
+import { updateFinancialDataAction } from "@/actions/financial";
+import { useRouter } from "next/navigation";
 
 type FormValues = z.infer<typeof incomeExpenssesAnnualFormSchema>;
 
-export function IncomeExpenssesAnnualForm() {
-  const { egi } = useIncomeExpenses();
+export const IncomeExpenssesAnnualForm = () => {
+  const router = useRouter();
+  const {
+    egi,
+    totalSquareFootage,
+    netRental,
+    retailIncome,
+    insuranceIncome,
+    miscIncome,
+  } = useIncomeExpenses();
+  const [state, formAction] = useActionState(updateFinancialDataAction, null);
   const form = useForm<FormValues>({
     resolver: zodResolver(incomeExpenssesAnnualFormSchema),
     defaultValues: incomeExpenssesAnnualFormDefaultValues,
@@ -47,9 +60,36 @@ export function IncomeExpenssesAnnualForm() {
     return egi - totalExpenses;
   }, [egi, totalExpenses]);
 
+  useEffect(() => {
+    if (state?.success) {
+      router.push("/financing");
+    }
+  }, [state, router]);
+
   return (
     <Form {...form}>
-      <form className="space-y-6">
+      <form action={formAction} className="space-y-6">
+        {/* Values from the first form (via context) */}
+        <input
+          type="hidden"
+          name="totalSquareFootage"
+          value={totalSquareFootage}
+        />
+        <input type="hidden" name="netRental" value={netRental} />
+        <input type="hidden" name="retailIncome" value={retailIncome} />
+        <input type="hidden" name="insuranceIncome" value={insuranceIncome} />
+        <input type="hidden" name="miscIncome" value={miscIncome} />
+
+        {/* Values from the current form */}
+
+        {/* Calculated values */}
+        <input type="hidden" name="effectiveGrossIncome" value={egi} />
+        <input type="hidden" name="totalExpenses" value={totalExpenses} />
+        <input type="hidden" name="netOperatingIncome" value={noi} />
+
+        {/* Default values for required fields that will be set later */}
+        <input type="hidden" name="totalDebt" value={0} />
+        <input type="hidden" name="annualDebtService" value={0} />
         <Card>
           <CardHeader>
             <CardTitle>Annual Expenses</CardTitle>
@@ -76,6 +116,7 @@ export function IncomeExpenssesAnnualForm() {
                               field.onChange,
                             )
                           }
+                          name="propertyTaxes"
                         />
                       </div>
                     </FormControl>
@@ -104,6 +145,7 @@ export function IncomeExpenssesAnnualForm() {
                               field.onChange,
                             )
                           }
+                          name="insurance"
                         />
                       </div>
                     </FormControl>
@@ -132,6 +174,7 @@ export function IncomeExpenssesAnnualForm() {
                               field.onChange,
                             )
                           }
+                          name="utilities"
                         />
                       </div>
                     </FormControl>
@@ -160,6 +203,7 @@ export function IncomeExpenssesAnnualForm() {
                               field.onChange,
                             )
                           }
+                          name="repairsAndMaintenance"
                         />
                       </div>
                     </FormControl>
@@ -188,6 +232,7 @@ export function IncomeExpenssesAnnualForm() {
                               field.onChange,
                             )
                           }
+                          name="adminExpense"
                         />
                       </div>
                     </FormControl>
@@ -216,6 +261,7 @@ export function IncomeExpenssesAnnualForm() {
                               field.onChange,
                             )
                           }
+                          name="offSiteManagement"
                         />
                       </div>
                     </FormControl>
@@ -244,6 +290,7 @@ export function IncomeExpenssesAnnualForm() {
                               field.onChange,
                             )
                           }
+                          name="onSiteManagement"
                         />
                       </div>
                     </FormControl>
@@ -272,6 +319,7 @@ export function IncomeExpenssesAnnualForm() {
                               field.onChange,
                             )
                           }
+                          name="advertisingMarketing"
                         />
                       </div>
                     </FormControl>
@@ -300,6 +348,7 @@ export function IncomeExpenssesAnnualForm() {
                               field.onChange,
                             )
                           }
+                          name="miscellaneous"
                         />
                       </div>
                     </FormControl>
@@ -328,7 +377,18 @@ export function IncomeExpenssesAnnualForm() {
             </Card>
           </CardContent>
         </Card>
+        <input type="hidden" name="totalExpenses" value={totalExpenses} />
+        <input type="hidden" name="netOperatingIncome" value={noi} />
+        <input type="hidden" name="effectiveGrossIncome" value={egi} />
+        <input type="hidden" name="repairsMaintenance" value={1000} />
+        <input type="hidden" name="miscExpenses" value={100} />
+        {state?.errors && (
+          <div className="text-sm text-red-500">
+            {Object.values(state?.errors).join(", ")}
+          </div>
+        )}
+        <SubmitAndBackBtn prevPage="/rent-roll" />
       </form>
     </Form>
   );
-}
+};

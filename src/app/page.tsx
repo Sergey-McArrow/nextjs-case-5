@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 
-export default function Page() {
+export default function HomePage() {
   return (
     <div className="container mx-auto py-12">
       <div className="flex flex-col items-center justify-center space-y-8">

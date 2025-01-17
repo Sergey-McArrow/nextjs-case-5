@@ -2,7 +2,7 @@ import { IncomeExpensesCurrentForm } from "@/components/income-expenses-current-
 import { IncomeExpenssesAnnualForm } from "@/components/income-expensses-annual-form";
 import { IncomeExpensesProvider } from "@/context/income-expenses-context";
 
-export const IncomeExpensesPage = () => {
+export default function IncomeExpensesPage() {
   return (
     <div className="container mx-auto space-y-8 p-8">
       <h1 className="text-2xl font-bold">Income & Expenses</h1>
@@ -12,6 +12,4 @@ export const IncomeExpensesPage = () => {
       </IncomeExpensesProvider>
     </div>
   );
-};
-
-export default IncomeExpensesPage;
+}

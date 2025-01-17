@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { prisma } from "@/lib/prisma";
 import { PropertyItem } from "@/components/property-item";
 
-export const PortfolioPage = async () => {
+export default async function PortfolioPage() {
   const properties = await prisma.property.findMany({
     orderBy: { createdAt: "desc" },
   });
@@ -24,6 +24,4 @@ export const PortfolioPage = async () => {
       ))}
     </div>
   );
-};
-
-export default PortfolioPage;
+}

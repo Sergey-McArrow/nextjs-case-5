@@ -20,15 +20,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <Providers>
-      <html lang="en">
-        <body
-          className={`${inter.variable} grid grid-cols-[30%_70%] antialiased`}
-        >
-          <Sidebar />
-          {children}
-        </body>
-      </html>
-    </Providers>
+    <html lang="en" className={inter.variable}>
+      <body className="antialiased">
+        <Providers>
+          <div className="grid grid-cols-[30%_70%]">
+            <Sidebar />
+            <main>{children}</main>
+          </div>
+        </Providers>
+      </body>
+    </html>
   );
 }

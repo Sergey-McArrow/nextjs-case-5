@@ -126,7 +126,7 @@ export function FinancingForm() {
                     control={form.control}
                     name="startDate"
                     render={({ field }) => (
-                      <FormItem className="flex flex-col">
+                      <FormItem>
                         <FormLabel>Start Date</FormLabel>
                         <Popover>
                           <PopoverTrigger asChild>
@@ -296,7 +296,9 @@ export function FinancingForm() {
                             type="number"
                             min="1"
                             value={field.value}
-                            onChange={(e) => field.onChange(Number(e.target.value))}
+                            onChange={(e) =>
+                              field.onChange(Number(e.target.value))
+                            }
                           />
                         </FormControl>
                         <FormMessage />
@@ -315,7 +317,9 @@ export function FinancingForm() {
                             type="number"
                             min="1"
                             value={field.value}
-                            onChange={(e) => field.onChange(Number(e.target.value))}
+                            onChange={(e) =>
+                              field.onChange(Number(e.target.value))
+                            }
                           />
                         </FormControl>
                         <FormMessage />

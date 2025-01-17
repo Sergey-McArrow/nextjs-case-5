@@ -62,3 +62,17 @@ export const financingFormSchema = z.object({
 });
 
 export type FinancingFormValues = z.infer<typeof financingFormSchema>;
+
+export const ownershipStructureSchema = z.object({
+  owners: z.array(
+    z.object({
+      name: z.string().min(1, "Name is required"),
+      ownershipPercentage: z
+        .number()
+        .min(0, "Percentage must be greater than 0")
+        .max(100, "Percentage must be less than 100"),
+    }),
+  ),
+});
+
+export type TOwnershipStructureValues = z.infer<typeof ownershipStructureSchema>;

@@ -65,3 +65,11 @@ export const financingFormDefaultValues: FinancingFormValues = {
   amortization: getRandomValueBetween(1, 24),
   financingFees: getRandomValueBetween(1, 24),
 };
+
+export const ownershipStructureDefaultValues = {
+  owners: [
+    { name: "", ownershipPercentage: 35 },
+    { name: "", ownershipPercentage: 35 },
+    { name: "", ownershipPercentage: 30 },
+  ],
+};

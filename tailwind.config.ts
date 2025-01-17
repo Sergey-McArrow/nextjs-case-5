@@ -13,6 +13,7 @@ export default {
         black: "#171F2D",
         teal: "#28AEAE",
         dark: "#002E2E",
+        light: "#C5FBFB",
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
         card: {

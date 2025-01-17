@@ -19,6 +19,13 @@ export default async function PortfolioPage() {
           </Button>
         </Link>
       </div>
+      <p className="mb-4 flex items-center gap-2 text-muted-foreground">
+        List of properties
+        <span className="flex h-6 w-6 items-center justify-center rounded-full bg-dark text-white">
+          {properties?.length}
+        </span>
+      </p>
+
       {properties?.map((property) => (
         <PropertyItem key={property.id} prop={property} />
       ))}

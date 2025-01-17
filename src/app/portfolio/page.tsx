@@ -2,6 +2,7 @@ import { Plus } from "lucide-react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { prisma } from "@/lib/prisma";
+import { PropertyItem } from "@/components/property-item";
 
 export const PortfolioPage = async () => {
   const properties = await prisma.property.findMany({
@@ -18,8 +19,9 @@ export const PortfolioPage = async () => {
           </Button>
         </Link>
       </div>
-      {/* Portfolio content will go here */}
-      <pre>{JSON.stringify(properties, null, 2)}</pre>
+      {properties?.map((property) => (
+        <PropertyItem key={property.id} prop={property} />
+      ))}
     </div>
   );
 };

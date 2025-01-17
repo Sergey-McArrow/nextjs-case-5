@@ -45,3 +45,20 @@ export const incomeExpenssesAnnualFormSchema = z.object({
   advertisingMarketing: z.number(),
   miscellaneous: z.number(),
 });
+
+export const financingFormSchema = z.object({
+  lender: z.string().min(1, "Lender name is required"),
+  loanAmount: z.number().min(0, "Loan amount must be positive"),
+  startDate: z.string({
+    required_error: "Start date is required",
+  }),
+  rateType: z.enum(["Fixed", "Variable"]),
+  interestRate: z.number().min(0, "Interest rate must be positive"),
+  interestCapitalization: z.enum(["Monthly", "Semi-Annual"]),
+  interestOnlyPeriod: z.number().min(0, "Interest only period must be positive"),
+  term: z.number().min(1, "Term must be at least 1"),
+  amortization: z.number().min(1, "Amortization must be at least 1"),
+  financingFees: z.number().min(0, "Financing fees must be positive"),
+});
+
+export type FinancingFormValues = z.infer<typeof financingFormSchema>;

@@ -2,6 +2,7 @@ import {
   getRandomStatusOrTypeValue,
   getRandomValueBetween,
 } from "./lib/helpers";
+import { FinancingFormValues } from "./types/schemas";
 
 export const navItems = [
   "property-details",
@@ -50,4 +51,17 @@ export const incomeExpenssesAnnualFormDefaultValues = {
   onSiteManagement: 11358,
   advertisingMarketing: 11067,
   miscellaneous: 13500,
+};
+
+export const financingFormDefaultValues: FinancingFormValues = {
+  lender: "ABC Capitals",
+  loanAmount: getRandomValueBetween(100, 1000),
+  startDate: new Date().toISOString(),
+  rateType: "Fixed",
+  interestRate: getRandomValueBetween(1, 10),
+  interestCapitalization: "Monthly",
+  interestOnlyPeriod: getRandomValueBetween(1, 24),
+  term: getRandomValueBetween(1, 24),
+  amortization: getRandomValueBetween(1, 24),
+  financingFees: getRandomValueBetween(1, 24),
 };
